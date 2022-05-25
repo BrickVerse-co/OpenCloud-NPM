@@ -15,24 +15,31 @@ class Http {
         }
     }
 
-    async setToken(token: string) {
-        if (!token || !token.includes("WARNING")) {
+    async setToken(token: string, isbot: boolean) {
+        if (!token || !token.includes("WARNING") && !token.includes("terminate")) {
             throw new Error("Invalid token provided: Please include full warning!");
         }
 
-        let response = await axios({
-            method: `GET`,
-            url: `https://auth.brickverse.co?action=set`,
-            headers: {
-                cookie: `.BRICKVERSE_SECURITY_TOKEN=${token}`
-            }
-        });
-
-        if (response.data['UserID']) {
-            this.#token = token;
-            return response.data;
+        if (token.includes("terminate")) {
+            this.#token = "";
         } else {
-            throw new Error('Invalid token provided');
+            let response = await axios({
+                method: `GET`,
+                url: `https://auth.brickverse.co?action=set`,
+                headers: {
+                    cookie: `.BRICKVERSE_SECURITY_TOKEN=${token}`
+                },
+                body: {
+                    bot: isbot
+                }
+            });
+
+            if (response.data['UserID']) {
+                this.#token = token;
+                return response.data;
+            } else {
+                throw new Error('Invalid token provided');
+            }
         }
     }
 
