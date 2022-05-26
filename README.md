@@ -1,6 +1,6 @@
 # Install
 Open command line and type: ``npm install brickverse``
-<<<<<<< HEAD
+
 # Docs
 https://developers.brickverse.co/npm-module/introduction
 
