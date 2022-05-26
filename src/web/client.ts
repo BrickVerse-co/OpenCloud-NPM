@@ -49,7 +49,7 @@ class Client {
         if (!types.includes(thumbnail_type)) { throw new Error("Invalid thumbnail type"); }
 
         let currentToken = this.http.getToken();
-
+        
         return await this.http.request('POST', `https://api.brickverse.co/v1/user/avatar/`, {
             token: currentToken,
             id: userId
