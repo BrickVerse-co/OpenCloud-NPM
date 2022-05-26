@@ -1,5 +1,6 @@
 # Install
 Open command line and type: ``npm install brickverse``
+<<<<<<< HEAD
 # Docs
 https://developers.brickverse.co/npm-module/introduction
 
@@ -17,4 +18,7 @@ bot.login(process.env.BRICKVERSE_SECURITY_TOKEN, true).then(async() => {
 ```
 
 # Maintainers
-This library is maintained by engineers from BrickVerse.
+This library is maintained by engineers from BrickVerse Development team, please use issue sections to report bugs.
+
+# Internal
+This is a internal version as of now, and non-operational for public for a while.
