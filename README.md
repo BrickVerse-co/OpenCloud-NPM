@@ -22,3 +22,5 @@ This library is maintained by engineers from BrickVerse Development team, please
 
 # Internal
 This is a internal version as of now, and non-operational for public for a while.
+
+[![](https://data.jsdelivr.com/v1/package/npm/brickverse/badge)](https://www.jsdelivr.com/package/npm/brickverse)
