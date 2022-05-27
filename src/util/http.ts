@@ -1,4 +1,4 @@
-import axios, { AxiosResponse } from 'axios'
+import axios, { AxiosRequestConfig, AxiosResponse } from 'axios'
 
 class Http {
     #token: string;
@@ -23,16 +23,18 @@ class Http {
         if (token.includes("terminate")) {
             this.#token = "";
         } else {
-            let response = await axios({
+            const config: AxiosRequestConfig = {
                 method: `GET`,
                 url: `https://auth.brickverse.co?action=set`,
+                data: {
+                    bot: isbot
+                },
                 headers: {
                     cookie: `.BRICKVERSE_SECURITY_TOKEN=${token}`
                 },
-                body: {
-                    bot: isbot
-                }
-            });
+            };
+
+            let response: AxiosResponse = await axios(config);
 
             if (response.data['UserID']) {
                 this.#token = token;

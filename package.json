@@ -1,10 +1,10 @@
 {
     "name": "brickverse",
-    "version": "1.0.2",
+    "version": "1.0.3",
     "description": "API library for interacting with BrickVerse.co api.",
     "homepage": "https://www.brickverse.co",
     "keywords": ["brickverse", "api", "library"],
-    "main": "index.js",
+    "main": "src/index.js",
     "directories": {
         "test": "test"
     },
@@ -16,6 +16,9 @@
         "test": "tsc && mocha",
         "build": "tsc && npm pack --pack-destination=build"
     },
+    "files": [
+        "/src"
+    ],
     "type": "commonjs",
     "dependencies": {
         "assert": "^2.0.0",
