@@ -26,7 +26,7 @@ class Client {
         return __awaiter(this, void 0, void 0, function* () {
             // terminate session
             this.http.setToken("terminate", false);
-            return yield this.http.request('POST', `https://auth.brickverse.co?action=terminate`, {}).then((response) => { return response; }).catch((error) => (0, util_1.err)(error));
+            return yield this.http.request('GET', `https://brickverse.gg/logout`, {}).then((response) => { return response; }).catch((error) => (0, util_1.err)(error));
         });
     }
     // FRIENDS
@@ -36,7 +36,7 @@ class Client {
                 throw new Error("Invalid userId");
             }
             let currentToken = this.http.getToken();
-            return yield this.http.request('POST', `https://api.brickverse.co/v1/user/friend/`, {
+            return yield this.http.request('POST', `https://api.brickverse.gg/v1/user/friend/`, {
                 token: currentToken,
                 target: userId
             }).then((response) => { return response; }).catch((error) => (0, util_1.err)(error));
@@ -48,7 +48,7 @@ class Client {
                 throw new Error("Invalid userId");
             }
             let currentToken = this.http.getToken();
-            return yield this.http.request('POST', `https://api.brickverse.co/v1/user/friends/`, {
+            return yield this.http.request('POST', `https://api.brickverse.gg/v1/user/friends/`, {
                 token: currentToken,
                 target: userId
             }).then((response) => { return response; }).catch((error) => (0, util_1.err)(error));
@@ -64,7 +64,7 @@ class Client {
                 throw new Error("Invalid thumbnail type");
             }
             let currentToken = this.http.getToken();
-            return yield this.http.request('POST', `https://api.brickverse.co/v1/user/avatar/`, {
+            return yield this.http.request('POST', `https://api.brickverse.gg/v1/user/avatar/`, {
                 token: currentToken,
                 id: userId
             }).then((response) => {
@@ -83,24 +83,63 @@ class Client {
             }).catch((error) => (0, util_1.err)(error));
         });
     }
+    // Auth
+    GetSessionInfo(sesitive) {
+        return __awaiter(this, void 0, void 0, function* () {
+            var sesitive_query = "";
+            if (sesitive == undefined)
+                sesitive = false;
+            if (sesitive)
+                sesitive_query = "?sesitive";
+            return yield this.http.request('GET', `https://api.brickverse.gg/v2/auth/session${sesitive_query}`, {}).then((response) => {
+                return {
+                    status: response.status == "ok",
+                    data: response.status == "ok" ? response : response.message
+                };
+            }).catch((error) => (0, util_1.err)(error));
+        });
+    }
+    IsAuthed() {
+        return __awaiter(this, void 0, void 0, function* () {
+            return yield this.http.request('GET', `https://api.brickverse.gg/v2/auth/is-authed/`, {}).then((response) => {
+                return response.status == "ok";
+            }).catch((error) => (0, util_1.err)(error));
+        });
+    }
+    GetAuthToken() {
+        return __awaiter(this, void 0, void 0, function* () {
+            return yield this.http.request('GET', `https://api.brickverse.gg/v2/auth/get-token/`, {}).then((response) => {
+                return {
+                    status: response.status == "ok",
+                    data: response.status == "ok" ? response.token : response.message
+                };
+            }).catch((error) => (0, util_1.err)(error));
+        });
+    }
+    // User
+    GetPlayerByUserId(user_id) {
+        return __awaiter(this, void 0, void 0, function* () {
+            if (!Number(user_id)) {
+                throw new Error("Invalid user_id");
+            }
+            return yield this.http.request('GET', `https://api.brickverse.gg/v2/user/id/${user_id}/`, {}).then((response) => {
+                return {
+                    status: response.status == "ok",
+                    data: response.status == "ok" ? response.user_data : response.message
+                };
+            }).catch((error) => (0, util_1.err)(error));
+        });
+    }
     GetPlayerByUsername(username) {
         return __awaiter(this, void 0, void 0, function* () {
             if (!String(username)) {
                 throw new Error("Invalid username");
             }
-            return yield this.http.request('POST', `https://api.brickverse.co/v1/user/get-by-username?username=${username}/`, {}).then((response) => {
-                if (response.status == "success") {
-                    return {
-                        status: true,
-                        data: response
-                    };
-                }
-                else {
-                    return {
-                        status: false,
-                        data: response.reason
-                    };
-                }
+            return yield this.http.request('GET', `https://api.brickverse.gg/v2/user/username/${username}/`, {}).then((response) => {
+                return {
+                    status: response.status == "ok",
+                    data: response.status == "ok" ? response.user_data : response.message
+                };
             }).catch((error) => (0, util_1.err)(error));
         });
     }
@@ -109,7 +148,7 @@ class Client {
             if (!Number(guildId)) {
                 throw new Error("Invalid guildId");
             }
-            return yield this.http.request('POST', `https://api.brickverse.co/v1/guild/join?id=${guildId}/`, {}).then((response) => {
+            return yield this.http.request('POST', `https://api.brickverse.gg/v1/guild/join?id=${guildId}/`, {}).then((response) => {
                 return true;
             }).catch((error) => (0, util_1.err)(error));
         });

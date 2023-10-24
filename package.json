@@ -1,16 +1,20 @@
 {
     "name": "brickverse",
-    "version": "1.0.3",
-    "description": "API library for interacting with BrickVerse.co api.",
-    "homepage": "https://www.brickverse.co",
-    "keywords": ["brickverse", "api", "library"],
+    "version": "1.0.4",
+    "description": "API library for interacting with brickverse.gg api.",
+    "homepage": "https://www.brickverse.gg",
+    "keywords": [
+        "brickverse",
+        "api",
+        "library"
+    ],
     "main": "src/index.js",
     "directories": {
         "test": "test"
     },
     "bugs": {
         "url": "https://github.com/BrickVerse-co/BrickVerse-NPM-Module/issues",
-        "email": "support@brickverse.co"
+        "email": "support@brickverse.gg"
     },
     "scripts": {
         "test": "tsc && mocha",
@@ -21,6 +25,7 @@
     ],
     "type": "commonjs",
     "dependencies": {
+        "@types/axios": "^0.14.0",
         "assert": "^2.0.0",
         "axios": "^0.26.1"
     },
@@ -32,21 +37,25 @@
     "author": "rampagecorp",
     "funding": {
         "type": "patreon",
-        "url": "https://www.patreon.com/rampagecorp"
+        "url": "https://www.patreon.com/metatable"
     },
     "repository": "https://github.com/BrickVerse-co/BrickVerse-NPM-Module",
-    "contributors": [{
-        "name": "Jake G",
-        "email": "cm_jake@rampagestudios.org",
-        "url": "https://vq9o.com/"
-    }, {
-        "name": "Nate J",
-        "email": "cm_nate@rampagestudios.org",
-        "url": "https://verbxtim.com/"
-    }, {
-        "name": "Outgran",
-        "email": "cm_outgram@brickverse.co",
-        "url": "https://github.com/Outgram"
-    }],
+    "contributors": [
+        {
+            "name": "Jake G",
+            "email": "cm_jake@rampagestudios.org",
+            "url": "https://vq9o.com/"
+        },
+        {
+            "name": "Nate J",
+            "email": "cm_nate@rampagestudios.org",
+            "url": "https://verbxtim.com/"
+        },
+        {
+            "name": "Outgran",
+            "email": "cm_outgram@brickverse.gg",
+            "url": "https://github.com/Outgram"
+        }
+    ],
     "license": "MIT"
 }

@@ -10,6 +10,19 @@ declare class Client {
         status: boolean;
         avatar: any;
     }>;
+    GetSessionInfo(sesitive: Boolean): Promise<void | {
+        status: boolean;
+        data: any;
+    }>;
+    IsAuthed(): Promise<boolean | void>;
+    GetAuthToken(): Promise<void | {
+        status: boolean;
+        data: any;
+    }>;
+    GetPlayerByUserId(user_id: Number): Promise<void | {
+        status: boolean;
+        data: any;
+    }>;
     GetPlayerByUsername(username: string): Promise<void | {
         status: boolean;
         data: any;

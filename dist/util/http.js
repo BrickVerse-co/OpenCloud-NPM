@@ -52,16 +52,17 @@ class Http {
             else {
                 const config = {
                     method: `GET`,
-                    url: `https://auth.brickverse.co?action=set`,
+                    url: `https://api.brickverse.gg/v2/auth/set`,
                     data: {
-                        bot: isbot
+                        bot: isbot,
+                        token: token
                     },
                     headers: {
                         cookie: `.BRICKVERSE_SECURITY_TOKEN=${token}`
                     },
                 };
                 let response = yield (0, axios_1.default)(config);
-                if (response.data['UserID']) {
+                if (response.data['logged_in']) {
                     __classPrivateFieldSet(this, _Http_token, token, "f");
                     return response.data;
                 }
@@ -99,7 +100,7 @@ class Http {
             let response;
             let response1 = yield (0, axios_1.default)({
                 method: verb,
-                url: `https://auth.brickverse.co`,
+                url: `https://auth.brickverse.gg`,
                 headers: {
                     Cookie: `.BRICKVERSE_SECURITY_TOKEN=${__classPrivateFieldGet(this, _Http_token, "f")};`,
                     "x-csrf-token": "",

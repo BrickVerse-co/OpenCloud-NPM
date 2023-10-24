@@ -11,7 +11,7 @@ class Http {
         if (this.#token) {
             return this.#token;
         } else {
-            throw new Error('No token set'); 
+            throw new Error('No token set');
         }
     }
 
@@ -25,9 +25,10 @@ class Http {
         } else {
             const config: AxiosRequestConfig = {
                 method: `GET`,
-                url: `https://auth.brickverse.co?action=set`,
+                url: `https://api.brickverse.gg/v2/auth/set`,
                 data: {
-                    bot: isbot
+                    bot: isbot,
+                    token: token
                 },
                 headers: {
                     cookie: `.BRICKVERSE_SECURITY_TOKEN=${token}`
@@ -36,7 +37,7 @@ class Http {
 
             let response: AxiosResponse = await axios(config);
 
-            if (response.data['UserID']) {
+            if (response.data['logged_in']) {
                 this.#token = token;
                 return response.data;
             } else {
@@ -70,7 +71,7 @@ class Http {
 
         let response1 = await axios({
             method: verb,
-            url: `https://auth.brickverse.co`,
+            url: `https://auth.brickverse.gg`,
             headers: {
                 Cookie: `.BRICKVERSE_SECURITY_TOKEN=${this.#token};`,
                 "x-csrf-token": "",

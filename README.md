@@ -2,10 +2,11 @@
 Open command line and type: ``npm install brickverse``
 
 # Docs
-https://developers.brickverse.co/npm-module/introduction
+https://developers.brickverse.gg/npm-module/introduction
 
 # Web API
-https://developers.brickverse.co/npm-module/web-api
+https://developers.brickverse.gg/npm-module/web-api
+
 # Example
 ```js
 const { Client } = requre("brickverse");
