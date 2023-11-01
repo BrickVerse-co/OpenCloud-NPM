@@ -9,7 +9,7 @@ https://developers.brickverse.gg/npm-module/web-api
 
 # Example
 ```js
-const { WebAPIClient, OpenCloudClient } = require("brickverse");
+const { WebAPIClient, OpenCloudClient, ThumbnailClient } = require("brickverse");
 
 const apiKey = 'your-api-key';
 const apiSecret = 'your-api-secret';
@@ -20,6 +20,8 @@ const IsBot = true;
 let OpenCloud = new OpenCloudClient(apiKey, apiSecret);
 let WebAPI = new WebAPIClient();
 
+console.log(await ThumbnailClient.GetAssetThumbnail(1));
+console.log(await ThumbnailClient.GetUserThumbnail(1, "player_head"));
 console.log(await OpenCloud.Database.GetAsync(worldId, key));
 
 await OpenCloud.Database.SetAsync(worldId, key, {
