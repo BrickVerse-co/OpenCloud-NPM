@@ -9,7 +9,7 @@ https://developers.brickverse.gg/npm-module/web-api
 
 # Example
 ```js
-const { WebAPIClient, OpenCloudClient } = requre("brickverse");
+const { WebAPIClient, OpenCloudClient } = require("brickverse");
 
 const apiKey = 'your-api-key';
 const apiSecret = 'your-api-secret';
