@@ -1,6 +1,6 @@
 import { Http, err } from '../util'
 
-class Client {
+class WebAPIClient {
     http: Http;
 
     constructor() {
@@ -129,4 +129,4 @@ class Client {
     }
 }
 
-export default Client;
+export default WebAPIClient;
