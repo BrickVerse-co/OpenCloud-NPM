@@ -18,7 +18,7 @@ const key = "CoolDatabaseKey";
 const IsBot = true;
 
 let OpenCloud = new OpenCloudClient(apiKey, apiSecret);
-let WebAPI = new Client();
+let WebAPI = new WebAPIClient();
 
 console.log(await OpenCloud.Database.GetAsync(worldId, key));
 
