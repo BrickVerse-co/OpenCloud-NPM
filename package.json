@@ -1,12 +1,10 @@
 {
     "name": "brickverse",
-    "version": "1.0.5",
+    "version": "1.0.6",
     "description": "API library for interacting with brickverse.gg api.",
     "homepage": "https://www.brickverse.gg",
     "keywords": [
-        "brickverse",
-        "api",
-        "library"
+        "brickverse", "api", "library"
     ],
     "main": "src/index.js",
     "directories": {
@@ -20,9 +18,7 @@
         "test": "tsc && mocha",
         "build": "tsc && npm pack --pack-destination=build"
     },
-    "files": [
-        "/src"
-    ],
+    "files": ["/src"],
     "type": "commonjs",
     "dependencies": {
         "@types/axios": "^0.14.0",
@@ -46,13 +42,11 @@
             "name": "Jake G",
             "email": "cm_jake@rampagestudios.org",
             "url": "https://vq9o.com/"
-        },
-        {
+        }, {
             "name": "Nate J",
             "email": "cm_nate@rampagestudios.org",
             "url": "https://verbxtim.com/"
-        },
-        {
+        }, {
             "name": "Outgran",
             "email": "cm_outgram@brickverse.gg",
             "url": "https://github.com/Outgram"

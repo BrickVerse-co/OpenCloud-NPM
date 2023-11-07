@@ -1,1 +1,1 @@
-export { WebAPIClient, OpenCloudClient } from './core';
+export { WebAPIClient, OpenCloudClient, ThumbnailClient } from './core';

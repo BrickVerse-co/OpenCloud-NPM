@@ -27,9 +27,9 @@ class Database extends OpenCloudClient {
             return yield this.http.request('POST', `https://api.brickverse.gg/v2/cloud/database/set`, {
                 apiKey: this.apiKey,
                 apiSecret: this.apiSecret,
-                WorldId: WorldId,
-                Key: Key,
-                Value: Value
+                worldId: WorldId,
+                dataKey: Key,
+                dataValue: Value
             }).then((response) => { return response; }).catch((error) => (0, util_1.err)(error));
         });
     }
@@ -38,8 +38,8 @@ class Database extends OpenCloudClient {
             return yield this.http.request('GET', `https://api.brickverse.gg/v2/cloud/database/get`, {
                 apiKey: this.apiKey,
                 apiSecret: this.apiSecret,
-                WorldId: WorldId,
-                Key: Key
+                worldId: WorldId,
+                dataKey: Key
             }).then((response) => { return response; }).catch((error) => (0, util_1.err)(error));
         });
     }
