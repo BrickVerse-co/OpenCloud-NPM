@@ -74,8 +74,9 @@ class Webhooks extends OpenCloudClient {
         this.app = (0, express_1.default)();
         this.Webhooks = new Map();
         this.routes();
-        this.app.listen(port, () => {
-            console.log(`OpenCloudClient server is listening on port ${port}`);
+        this.server = this.app.listen(port, () => {
+            const url = `http://${this.server.address().address}:${port}/bvnpm/webhook`;
+            console.log(`OpenCloudClient server is listening on port ${port}. Live URL: ${url}`);
         });
     }
 }

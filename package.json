@@ -1,6 +1,6 @@
 {
     "name": "brickverse",
-    "version": "1.0.6",
+    "version": "1.0.7",
     "description": "API library for interacting with brickverse.gg api.",
     "homepage": "https://www.brickverse.gg",
     "keywords": [

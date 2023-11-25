@@ -37,6 +37,7 @@ class Database extends OpenCloudClient {
 class Webhooks extends OpenCloudClient {
     app: express.Express;
     Webhooks: Map<string, Function[]>;
+    server: any;
 
     on(event: string, eventHandler: Function) {
         if (!this.Webhooks.has(event)) {
@@ -74,9 +75,9 @@ class Webhooks extends OpenCloudClient {
         this.app = express();
         this.Webhooks = new Map();
         this.routes();
-
-        this.app.listen(port, () => {
-            console.log(`OpenCloudClient server is listening on port ${port}`);
+        this.server = this.app.listen(port, () => {
+            const url = `http://${this.server.address().address}:${port}/bvnpm/webhook`;
+            console.log(`OpenCloudClient server is listening on port ${port}. Live URL: ${url}`);
         });
     }
 }
