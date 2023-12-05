@@ -28,6 +28,10 @@ await OpenCloud.Database.SetAsync(worldId, key, {
     cool_json: true
 });
 
+console.log(await OpenCloud.ENV.GetAsync(worldId, key));
+
+await OpenCloud.ENV.SetAsync(worldId, key, "CoolFFlagOrSuperDuperSecret");
+
 OpenCloud.Webhooks.on('RightToErasure', (payload) => {
     console.log('Received RightToErasure event: ', payload);
     

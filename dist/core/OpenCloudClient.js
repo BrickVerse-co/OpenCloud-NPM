@@ -21,6 +21,29 @@ class OpenCloudClient {
         this.http = new util_1.Http();
     }
 }
+class ENV extends OpenCloudClient {
+    SetAsync(WorldId, Key, Value) {
+        return __awaiter(this, void 0, void 0, function* () {
+            return yield this.http.request('POST', `https://api.brickverse.gg/v2/cloud/env/set`, {
+                apiKey: this.apiKey,
+                apiSecret: this.apiSecret,
+                worldId: WorldId,
+                dataKey: Key,
+                dataValue: Value
+            }).then((response) => { return response; }).catch((error) => (0, util_1.err)(error));
+        });
+    }
+    GetAsync(WorldId, Key) {
+        return __awaiter(this, void 0, void 0, function* () {
+            return yield this.http.request('GET', `https://api.brickverse.gg/v2/cloud/env/get`, {
+                apiKey: this.apiKey,
+                apiSecret: this.apiSecret,
+                worldId: WorldId,
+                dataKey: Key
+            }).then((response) => { return response; }).catch((error) => (0, util_1.err)(error));
+        });
+    }
+}
 class Database extends OpenCloudClient {
     SetAsync(WorldId, Key, Value) {
         return __awaiter(this, void 0, void 0, function* () {
