@@ -37,7 +37,7 @@ await OCDatabase.SetAsync(worldId, key, {
 });
 
 console.log(await OCENV.GetAsync(worldId, key));
-console.log(await WorldClient.GetWorldATree(worldId));
+console.log(await WorldClient.GetWorldTree(worldId));
 
 await OCENV.SetAsync(worldId, key, "CoolFFlagOrSuperDuperSecret");
 
