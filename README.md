@@ -1,4 +1,4 @@
-# Install
+# Installation
 Open command line and type: ``npm install brickverse``
 
 # Documentation
