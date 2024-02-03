@@ -13,7 +13,7 @@ class OpenCloudClient {
     }
 }
 
-class ENV extends OpenCloudClient {
+class OCENV extends OpenCloudClient {
     async SetAsync(WorldId: number, Key: string, Value: string|number|JSON) {
         return await this.http.request('POST', `https://api.brickverse.gg/v2/cloud/env/set`, {
             apiKey: this.apiKey,
@@ -34,7 +34,7 @@ class ENV extends OpenCloudClient {
     }
 }
 
-class Database extends OpenCloudClient {
+class OCDatabase extends OpenCloudClient {
     async SetAsync(WorldId: number, Key: string, Value: JSON) {
         return await this.http.request('POST', `https://api.brickverse.gg/v2/cloud/database/set`, {
             apiKey: this.apiKey,
@@ -55,7 +55,7 @@ class Database extends OpenCloudClient {
     }
 }
 
-class Webhooks extends OpenCloudClient {
+class OCWebhooks extends OpenCloudClient {
     app: express.Express;
     Webhooks: Map<string, Function[]>;
     server: any;
