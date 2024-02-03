@@ -98,7 +98,7 @@ class OCWebhooks extends OpenCloudClient {
         this.routes();
         this.server = this.app.listen(port, () => {
             const url = `http://${this.server.address().address}:${port}/bvnpm/webhook`;
-            console.log(`OpenCloudClient server is listening on port ${port}. Live URL: ${url}`);
+            console.log(`OpenCloudClient server is listening on port ${port}. Live URL: ${url}. Setup Instructions: https://developers.brickverse.gg/open-cloud/npm-package/tutorials/webhook-configuration`);
         });
     }
 }

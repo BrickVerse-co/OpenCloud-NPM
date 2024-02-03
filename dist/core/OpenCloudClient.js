@@ -21,7 +21,7 @@ class OpenCloudClient {
         this.http = new util_1.Http();
     }
 }
-class ENV extends OpenCloudClient {
+class OCENV extends OpenCloudClient {
     SetAsync(WorldId, Key, Value) {
         return __awaiter(this, void 0, void 0, function* () {
             return yield this.http.request('POST', `https://api.brickverse.gg/v2/cloud/env/set`, {
@@ -44,7 +44,7 @@ class ENV extends OpenCloudClient {
         });
     }
 }
-class Database extends OpenCloudClient {
+class OCDatabase extends OpenCloudClient {
     SetAsync(WorldId, Key, Value) {
         return __awaiter(this, void 0, void 0, function* () {
             return yield this.http.request('POST', `https://api.brickverse.gg/v2/cloud/database/set`, {
@@ -67,7 +67,7 @@ class Database extends OpenCloudClient {
         });
     }
 }
-class Webhooks extends OpenCloudClient {
+class OCWebhooks extends OpenCloudClient {
     on(event, eventHandler) {
         if (!this.Webhooks.has(event)) {
             this.Webhooks.set(event, []);
@@ -99,7 +99,7 @@ class Webhooks extends OpenCloudClient {
         this.routes();
         this.server = this.app.listen(port, () => {
             const url = `http://${this.server.address().address}:${port}/bvnpm/webhook`;
-            console.log(`OpenCloudClient server is listening on port ${port}. Live URL: ${url}`);
+            console.log(`OpenCloudClient server is listening on port ${port}. Live URL: ${url}. Setup Instructions: https://developers.brickverse.gg/open-cloud/npm-package/tutorials/webhook-configuration`);
         });
     }
 }

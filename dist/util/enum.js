@@ -8,5 +8,4 @@ var ErrLevel;
     ErrLevel[ErrLevel["Warning"] = 2] = "Warning";
     ErrLevel[ErrLevel["Error"] = 3] = "Error";
     ErrLevel[ErrLevel["Critical"] = 4] = "Critical";
-})(ErrLevel || (ErrLevel = {}));
-exports.ErrLevel = ErrLevel;
+})(ErrLevel || (exports.ErrLevel = ErrLevel = {}));

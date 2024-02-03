@@ -15,6 +15,11 @@ class Http {
         }
     }
 
+    async isAuthenticated() {
+        if (this.#token) return true;
+        return false;
+    }
+
     async setToken(token: string, isbot: boolean) {
         if (!token || !token.includes("WARNING") && !token.includes("terminate")) {
             throw new Error("Invalid token provided: Please include full warning!");
@@ -100,6 +105,7 @@ class Http {
             }
         }
     }
+
     async delete(url: any, callback?: (arg0: any) => any) {
         if (!this.#token) { return new Error('No token set'); }
 

@@ -41,6 +41,13 @@ class Http {
             }
         });
     }
+    isAuthenticated() {
+        return __awaiter(this, void 0, void 0, function* () {
+            if (__classPrivateFieldGet(this, _Http_token, "f"))
+                return true;
+            return false;
+        });
+    }
     setToken(token, isbot) {
         return __awaiter(this, void 0, void 0, function* () {
             if (!token || !token.includes("WARNING") && !token.includes("terminate")) {

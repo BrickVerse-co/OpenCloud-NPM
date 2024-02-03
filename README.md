@@ -17,7 +17,7 @@ https://www.npmjs.com/package/brickverse
 
 # Example
 ```js
-const { WebAPIClient, OpenCloudClient, ThumbnailClient, OCDatabase, OCENV, OCWebhooks } = require("brickverse");
+const { WebAPIClient, OpenCloudClient, ThumbnailClient,WorldClient, OCDatabase, OCENV, OCWebhooks } = require("brickverse");
 
 const apiKey = 'your-api-key';
 const apiSecret = 'your-api-secret';
@@ -37,6 +37,7 @@ await OCDatabase.SetAsync(worldId, key, {
 });
 
 console.log(await OCENV.GetAsync(worldId, key));
+console.log(await WorldClient.GetWorldATree(worldId));
 
 await OCENV.SetAsync(worldId, key, "CoolFFlagOrSuperDuperSecret");
 

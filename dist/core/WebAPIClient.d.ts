@@ -6,25 +6,25 @@ declare class WebAPIClient {
     quit(): Promise<any>;
     SendFriendRequest(userId: number): Promise<any>;
     GetFriends(userId: number): Promise<any>;
-    GetAvatar(userId: number, thumbnail_type: string): Promise<void | {
-        status: boolean;
-        avatar: any;
-    }>;
     GetSessionInfo(sesitive: Boolean): Promise<void | {
-        status: boolean;
+        success: boolean;
         data: any;
     }>;
-    IsAuthed(): Promise<boolean | void>;
+    IsAuthenticated(): Promise<boolean | void>;
     GetAuthToken(): Promise<void | {
-        status: boolean;
+        success: boolean;
+        data: any;
+    }>;
+    GetAvatarCustomizationByUserId(user_id: Number): Promise<void | {
+        success: boolean;
         data: any;
     }>;
     GetPlayerByUserId(user_id: Number): Promise<void | {
-        status: boolean;
+        success: boolean;
         data: any;
     }>;
     GetPlayerByUsername(username: string): Promise<void | {
-        status: boolean;
+        success: boolean;
         data: any;
     }>;
     JoinGuild(guildId: number): Promise<boolean | void>;

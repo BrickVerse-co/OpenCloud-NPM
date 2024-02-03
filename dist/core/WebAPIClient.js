@@ -17,16 +17,14 @@ class WebAPIClient {
     // SESSION
     login(token, isbot) {
         return __awaiter(this, void 0, void 0, function* () {
-            return yield this.http.setToken(token, isbot)
-                .then((response) => { return response; })
-                .catch((error) => (0, util_1.err)(error));
+            return yield this.http.setToken(token, isbot).then((response) => { return response; }).catch((error) => (0, util_1.err)(error));
         });
     }
     quit() {
         return __awaiter(this, void 0, void 0, function* () {
             // terminate session
             this.http.setToken("terminate", false);
-            return yield this.http.request('GET', `https://brickverse.gg/logout`, {}).then((response) => { return response; }).catch((error) => (0, util_1.err)(error));
+            return yield this.http.request('GET', `https://api.brickverse.gg/v2/auth/logout`, {}).then((response) => { return response; }).catch((error) => (0, util_1.err)(error));
         });
     }
     // FRIENDS
@@ -54,35 +52,6 @@ class WebAPIClient {
             }).then((response) => { return response; }).catch((error) => (0, util_1.err)(error));
         });
     }
-    GetAvatar(userId, thumbnail_type) {
-        return __awaiter(this, void 0, void 0, function* () {
-            const types = ["player_head", "player_body"];
-            if (!Number(userId)) {
-                throw new Error("Invalid userId");
-            }
-            if (!types.includes(thumbnail_type)) {
-                throw new Error("Invalid thumbnail type");
-            }
-            let currentToken = this.http.getToken();
-            return yield this.http.request('POST', `https://api.brickverse.gg/v1/user/avatar/`, {
-                token: currentToken,
-                id: userId
-            }).then((response) => {
-                if (response.status == "success") {
-                    return {
-                        status: true,
-                        avatar: response.avatar
-                    };
-                }
-                else {
-                    return {
-                        status: false,
-                        avatar: response.reason
-                    };
-                }
-            }).catch((error) => (0, util_1.err)(error));
-        });
-    }
     // Auth
     GetSessionInfo(sesitive) {
         return __awaiter(this, void 0, void 0, function* () {
@@ -93,13 +62,13 @@ class WebAPIClient {
                 sesitive_query = "?sesitive";
             return yield this.http.request('GET', `https://api.brickverse.gg/v2/auth/session${sesitive_query}`, {}).then((response) => {
                 return {
-                    status: response.status == "ok",
+                    success: response.status == "ok",
                     data: response.status == "ok" ? response : response.message
                 };
             }).catch((error) => (0, util_1.err)(error));
         });
     }
-    IsAuthed() {
+    IsAuthenticated() {
         return __awaiter(this, void 0, void 0, function* () {
             return yield this.http.request('GET', `https://api.brickverse.gg/v2/auth/is-authed/`, {}).then((response) => {
                 return response.status == "ok";
@@ -110,13 +79,26 @@ class WebAPIClient {
         return __awaiter(this, void 0, void 0, function* () {
             return yield this.http.request('GET', `https://api.brickverse.gg/v2/auth/get-token/`, {}).then((response) => {
                 return {
-                    status: response.status == "ok",
+                    success: response.status == "ok",
                     data: response.status == "ok" ? response.token : response.message
                 };
             }).catch((error) => (0, util_1.err)(error));
         });
     }
     // User
+    GetAvatarCustomizationByUserId(user_id) {
+        return __awaiter(this, void 0, void 0, function* () {
+            if (!Number(user_id)) {
+                throw new Error("Invalid user_id");
+            }
+            return yield this.http.request('GET', `https://api.brickverse.gg/v2/user/id/${user_id}/`, {}).then((response) => {
+                return {
+                    success: response.status == "ok",
+                    data: response.status == "ok" ? response.avatar_data : response.message
+                };
+            }).catch((error) => (0, util_1.err)(error));
+        });
+    }
     GetPlayerByUserId(user_id) {
         return __awaiter(this, void 0, void 0, function* () {
             if (!Number(user_id)) {
@@ -124,7 +106,7 @@ class WebAPIClient {
             }
             return yield this.http.request('GET', `https://api.brickverse.gg/v2/user/id/${user_id}/`, {}).then((response) => {
                 return {
-                    status: response.status == "ok",
+                    success: response.status == "ok",
                     data: response.status == "ok" ? response.user_data : response.message
                 };
             }).catch((error) => (0, util_1.err)(error));
@@ -137,12 +119,13 @@ class WebAPIClient {
             }
             return yield this.http.request('GET', `https://api.brickverse.gg/v2/user/username/${username}/`, {}).then((response) => {
                 return {
-                    status: response.status == "ok",
+                    success: response.status == "ok",
                     data: response.status == "ok" ? response.user_data : response.message
                 };
             }).catch((error) => (0, util_1.err)(error));
         });
     }
+    // Guilds
     JoinGuild(guildId) {
         return __awaiter(this, void 0, void 0, function* () {
             if (!Number(guildId)) {

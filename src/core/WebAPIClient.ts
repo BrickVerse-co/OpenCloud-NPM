@@ -9,16 +9,13 @@ class WebAPIClient {
 
     // SESSION
     async login(token: string, isbot: boolean) {
-        return await this.http.setToken(token, isbot)
-            .then((response) => { return response; })
-            .catch((error) => err(error))
-            ;
+        return await this.http.setToken(token, isbot).then((response) => { return response; }).catch((error) => err(error)) ;
     }
 
     async quit() {
         // terminate session
         this.http.setToken("terminate", false);
-        return await this.http.request('GET', `https://brickverse.gg/logout`, {}).then((response) => { return response; }).catch((error) => err(error));
+        return await this.http.request('GET', `https://api.brickverse.gg/v2/auth/logout`, {}).then((response) => { return response; }).catch((error) => err(error));
     }
 
     // FRIENDS
@@ -42,32 +39,6 @@ class WebAPIClient {
         }).then((response) => { return response; }).catch((error) => err(error));
     }
 
-    async GetAvatar(userId: number, thumbnail_type: string) {
-        const types = ["player_head", "player_body"];
-
-        if (!Number(userId)) { throw new Error("Invalid userId"); }
-        if (!types.includes(thumbnail_type)) { throw new Error("Invalid thumbnail type"); }
-
-        let currentToken = this.http.getToken();
-
-        return await this.http.request('POST', `https://api.brickverse.gg/v1/user/avatar/`, {
-            token: currentToken,
-            id: userId
-        }).then((response) => {
-            if (response.status == "success") {
-                return {
-                    status: true,
-                    avatar: response.avatar
-                };
-            } else {
-                return {
-                    status: false,
-                    avatar: response.reason
-                };
-            }
-        }).catch((error) => err(error));
-    }
-
     // Auth
     async GetSessionInfo(sesitive: Boolean) {
         var sesitive_query = "";
@@ -76,13 +47,13 @@ class WebAPIClient {
 
         return await this.http.request('GET', `https://api.brickverse.gg/v2/auth/session${sesitive_query}`, {}).then((response) => {
             return {
-                status: response.status == "ok",
+                success: response.status == "ok",
                 data: response.status == "ok" ? response : response.message
             };
         }).catch((error) => err(error));
     }
 
-    async IsAuthed() {
+    async IsAuthenticated() {
         return await this.http.request('GET', `https://api.brickverse.gg/v2/auth/is-authed/`, {}).then((response) => {
             return response.status == "ok";
         }).catch((error) => err(error));
@@ -91,19 +62,30 @@ class WebAPIClient {
     async GetAuthToken() {
         return await this.http.request('GET', `https://api.brickverse.gg/v2/auth/get-token/`, {}).then((response) => {
             return {
-                status: response.status == "ok",
+                success: response.status == "ok",
                 data: response.status == "ok" ? response.token : response.message
             };
         }).catch((error) => err(error));
     }
 
     // User
+    async GetAvatarCustomizationByUserId(user_id: Number) {
+        if (!Number(user_id)) { throw new Error("Invalid user_id"); }
+
+        return await this.http.request('GET', `https://api.brickverse.gg/v2/user/id/${user_id}/`, {}).then((response) => {
+            return {
+                success: response.status == "ok",
+                data: response.status == "ok" ? response.avatar_data : response.message
+            };
+        }).catch((error) => err(error));
+    }
+
     async GetPlayerByUserId(user_id: Number) {
         if (!Number(user_id)) { throw new Error("Invalid user_id"); }
 
         return await this.http.request('GET', `https://api.brickverse.gg/v2/user/id/${user_id}/`, {}).then((response) => {
             return {
-                status: response.status == "ok",
+                success: response.status == "ok",
                 data: response.status == "ok" ? response.user_data : response.message
             };
         }).catch((error) => err(error));
@@ -114,12 +96,13 @@ class WebAPIClient {
 
         return await this.http.request('GET', `https://api.brickverse.gg/v2/user/username/${username}/`, {}).then((response) => {
             return {
-                status: response.status == "ok",
+                success: response.status == "ok",
                 data: response.status == "ok" ? response.user_data : response.message
             };
         }).catch((error) => err(error));
     }
 
+    // Guilds
     async JoinGuild(guildId: number) {
         if (!Number(guildId)) { throw new Error("Invalid guildId"); }
 
