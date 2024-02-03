@@ -4,6 +4,7 @@ Open command line and type: ``npm install brickverse``
 # Documentation
 ## NPM Package
 https://developers.brickverse.gg/npm-module/introduction
+Automatic Documentation: https://brickverse-co.github.io/OpenCloud-NPM/
 
 ## Web API
 https://developers.brickverse.gg/npm-module/web-api
